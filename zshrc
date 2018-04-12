@@ -69,7 +69,7 @@ alias gpa='for i in $(git remote); do echo "Pushing to $i"; git push $i $(git re
 alias reboot='echo "Reboot prevented. Use rreboot to really reboot."'
 alias rreboot='/usr/bin/reboot'
 
-source .private-aliases
+source ~/.dotfiles/.private-aliases
 
 function disk-usage(){
   du -skh $1/* | sort -h
