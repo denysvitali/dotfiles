@@ -11,8 +11,8 @@ exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
 
 " You should note that groups will be processed by Pathogen in reverse
 " order they were added.
-call janus#add_group("tools")
-call janus#add_group("langs")
+"call janus#add_group("tools")
+"call janus#add_group("langs")
 call janus#add_group("colors")
 
 ""
@@ -36,14 +36,14 @@ if filereadable(expand("~/.vimrc.before"))
 endif
 
 
-" Disable plugins prior to loading pathogen
+"" Disable plugins prior to loading pathogen
 exe 'source ' . g:janus_vim_path . '/core/plugins.vim'
-
-""
-"" Pathogen setup
-""
-
-" Load all groups, custom dir, and janus core
+"
+"""
+""" Pathogen setup
+"""
+"
+"" Load all groups, custom dir, and janus core
 call janus#load_pathogen()
 
 execute pathogen#infect()
@@ -68,6 +68,7 @@ let g:rustfmt_autosave = 1
 ""  UTF-8
 ""
 set encoding=UTF-8
+set fileencoding=utf-8  " The encoding written to file.
 
 ""
 "" Plugins
@@ -83,6 +84,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'enricobacis/vim-airline-clock'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'ayu-theme/ayu-vim'
 
 
 ""
@@ -101,17 +104,31 @@ let g:airline#extensions#clock#updatetime = 1000
 ""
 ""  VIM Theme
 ""
-syntax enable
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
+"syntax enable
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+
+" Disable Background Color Erase
+let &t_ut=''
+
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
+
+" IndentLine {{
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
 
 ""
 ""  NERDTree
 ""
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 
 "" File Highliter
@@ -152,7 +169,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
