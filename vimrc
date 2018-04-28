@@ -109,9 +109,6 @@ let g:airline#extensions#clock#updatetime = 1000
 "colorscheme solarized
 "let g:solarized_termcolors=256
 
-" Disable Background Color Erase
-let &t_ut=''
-
 set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
@@ -175,3 +172,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" Disable Background Color Erase
+if $TERM == "xterm-kitty"
+  let &t_ut=''
+endif
