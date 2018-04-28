@@ -72,7 +72,7 @@ alias rreboot='/usr/bin/reboot'
 source ~/.dotfiles/.private-aliases
 
 function disk-usage(){
-  du -skh $1/* | sort -h
+  du -skh $1/* $1/.* | sort -h
 }
 
 function yt-live-sonos(){
@@ -100,7 +100,7 @@ archfeed() {
   sed -e 's/[ç£§]//g')\n\n" | less -R
 }
 
-PATH="/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PATH="/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/$USERNAME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/$USERNAME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/$USERNAME/perl5\""; export PERL_MB_OPT;
