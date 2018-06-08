@@ -68,11 +68,12 @@ alias gps='for i in {origin,supsi}; do echo "Pushing to $i"; git push $i denvit/
 alias gpa='for i in $(git remote); do echo "Pushing to $i"; git push $i $(git rev-parse --abbrev-ref HEAD); done'
 alias reboot='echo "Reboot prevented. Use rreboot to really reboot."'
 alias rreboot='/usr/bin/reboot'
+alias xclip='xclip -selection c'
 
 source ~/.dotfiles/.private-aliases
 
 function disk-usage(){
-  du -skh $1/* $1/.* | sort -h
+  du -skh $1/* | sort -h
 }
 
 function yt-live-sonos(){
@@ -100,7 +101,7 @@ archfeed() {
   sed -e 's/[ç£§]//g')\n\n" | less -R
 }
 
-PATH="/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PATH="/home/dvitali/.local/bin:/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/$USERNAME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/$USERNAME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/$USERNAME/perl5\""; export PERL_MB_OPT;

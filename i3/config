@@ -40,6 +40,8 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec albert show
+# I'm using Krunner now
 bindsym $mod+q exec rofi -show window
 bindsym $mod+i exec rofi -show ssh
 bindsym $mod+e exec nautilus
@@ -235,7 +237,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id setxkbmap de_CH
 exec --no-startup-id compton&
-exec --no-startup-id ~/.screenlayout/home.sh &
+#exec --no-startup-id krunner&
+exec --no-startup-id ~/.scripts/disp-home.sh &
 exec --no-startup-id nitrogen --restore &
 exec --no-startup-id ~/.config/polybar/launch.sh
 
@@ -245,13 +248,11 @@ exec --no-startup-id ~/.config/polybar/launch.sh
 
 #--[ GAPS and BORDERS ]--#
 
-gaps inner 15
-gaps outer 20
-
 #smart_borders enable
 new_window none
 for_window [class="^.*"] border pixel 1
 
+for_window [class="albert" instance="albert"] border none
 # Disable floating for hangouts
 for_window [class="Google-chrome" \
             instance="crx_knipolnnllmklapflnccelgolnpehhpl" \
@@ -259,6 +260,7 @@ for_window [class="Google-chrome" \
 
 for_window [title="^floatme$"] floating enable
 
+assign [class="Albert" instance="albert"] albert
 assign [class="Google-chrome" \
         instance="crx_knipolnnllmklapflnccelgolnpehhpl" \
         window_role="app"] hangouts
@@ -280,8 +282,8 @@ for_window [class="Florence" instance="florence" title="florence"] floating enab
 #--$template: i3.template
 #--$name: i3.conf
 
-gaps inner 10
-gaps outer 10
+gaps inner 8
+gaps outer 6
 
 
 client.focused          #455A64     #455A64     #FFFFFF     #455A64     #455A64
@@ -291,3 +293,52 @@ client.urgent           #222222      #c0392b      #FFFFFF      #c0392b      #222
 client.placeholder      #000000 #0C0C0C #FFFFFF #0C0C0C #000000
 
 client.background       #000000
+
+# Display Config
+#output HDMI-A-1 pos 0 0 res 1920x1080
+#output eDP-1 pos 0 1080 res 1920x1080
+
+#bar {
+#    output eDP-1
+#    position bottom
+#    status_command i3blocks
+#    font pango:Roboto 10
+#    height 30
+#
+#    strip_workspace_numbers yes
+#
+#    colors {
+#        statusline  #ebdbb2
+#        background  #303030
+#        separator   #505050
+#
+#        focused_workspace   #505050 #202020 #ebdbb2
+#        inactive_workspace  #303030 #303030 #ebdbb2
+#
+#        binding_mode        #505050 #202020 #ebdbb2
+#    }
+#}
+
+
+bar {
+    output HDMI-A-1
+    position bottom
+    status_command i3blocks
+    font pango:Roboto 10
+    height 26
+
+    strip_workspace_numbers yes
+
+    colors {
+        statusline #ebdbb2
+        background #303030
+
+        focused_workspace   #505050 #202020 #ebdbb2
+        inactive_workspace  #303030 #303030 #ebdbb2
+
+        binding_mode        #505050 #202020 #ebdbb2
+    }
+}
+
+# Wallpaper
+#output "*" background ~/Pictures/Wallpapers/mark-koch-526791-unsplash.jpg fill
