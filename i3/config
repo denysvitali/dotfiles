@@ -33,13 +33,13 @@ focus_follows_mouse no
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec konsole
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec konsole
+#bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show combi
 #bindsym $mod+d exec albert show
 # I'm using Krunner now
 bindsym $mod+q exec rofi -show window
@@ -210,8 +210,8 @@ bindsym --release $mod+Print exec "scrot -e 'mv $f /tmp/ && gimp /tmp/$f'"
 # scrot & gimp - select window or rectangle
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/scripts/volume-up.sh #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/scripts/volume-down.sh  #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
@@ -286,11 +286,11 @@ gaps inner 8
 gaps outer 6
 
 
-client.focused          #455A64     #455A64     #FFFFFF     #455A64     #455A64
-client.focused_inactive #222222    #5F676A    #FFFFFF    #5F676A    #5F676A
-client.unfocused        #333333   #222222   #888888   #222222   #333333
-client.urgent           #222222      #c0392b      #FFFFFF      #c0392b      #222222
-client.placeholder      #000000 #0C0C0C #FFFFFF #0C0C0C #000000
+client.focused          #325463     #325463     #FFFFFF     #1084ba     #02aaf2
+client.focused_inactive #222222     #5F676A     #FFFFFF     #5F676A     #5F676A
+client.unfocused        #333333     #222222     #888888     #222222     #333333
+client.urgent           #222222     #c0392b     #FFFFFF     #c0392b     #222222
+client.placeholder      #000000     #0C0C0C     #FFFFFF     #0C0C0C     #000000
 
 client.background       #000000
 
