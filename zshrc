@@ -49,10 +49,10 @@ ZSH_THEME="risto"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux)
+plugins=(git archlinux zsh-syntax-highlighting zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
-export GOPATH=/home/$USERNAME/.go/
+export GOPATH=/home/$USERNAME/.go/:/home/$USERNAME/Documents/go/
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export LD_LIBRARY_PATH=/usr/lib
 
@@ -71,6 +71,9 @@ alias rreboot='/usr/bin/reboot'
 alias xclip='xclip -selection c'
 
 source ~/.dotfiles/.private-aliases
+
+# Enable completions
+autoload -U compinit && compinit
 
 function disk-usage(){
   du -skh $1/* | sort -h
