@@ -33,7 +33,7 @@ focus_follows_mouse no
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec alacritty 
 #bindsym $mod+Return exec kitty
 
 # kill focused window
@@ -178,7 +178,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-bindsym $mod+n exec "wal -i $HOME/wallpapers/inuse -o wal-set"; exec $HOME/.config/polybar/launch.sh
+#bindsym $mod+n exec "wal -i $HOME/wallpapers/inuse -o wal-set"; exec $HOME/.config/polybar/launch.sh
 
 mode "move" {
   bindsym h move left
@@ -238,9 +238,9 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id setxkbmap de_CH
 exec --no-startup-id compton&
 #exec --no-startup-id krunner&
-exec --no-startup-id ~/.scripts/disp-home.sh &
+exec --no-startup-id ~/.scripts/disp-home.sh
 exec --no-startup-id nitrogen --restore &
-exec --no-startup-id ~/.config/polybar/launch.sh
+#exec --no-startup-id ~/.config/polybar/launch.sh
 
 #exec --no-startup-id conky
 #exec --no-startup-id dunst
@@ -282,8 +282,8 @@ for_window [class="Florence" instance="florence" title="florence"] floating enab
 #--$template: i3.template
 #--$name: i3.conf
 
-gaps inner 8
-gaps outer 6
+gaps inner 5
+gaps outer 3
 
 
 client.focused          #325463     #325463     #FFFFFF     #1084ba     #02aaf2
@@ -321,17 +321,37 @@ client.background       #000000
 
 
 bar {
-    output HDMI-A-1
+    output eDP1
     position bottom
     status_command i3blocks
     font pango:Roboto 10
-    height 26
+    height 20
 
     strip_workspace_numbers yes
 
     colors {
         statusline #ebdbb2
-        background #303030
+        background #37474F
+
+        focused_workspace   #505050 #202020 #ebdbb2
+        inactive_workspace  #303030 #303030 #ebdbb2
+
+        binding_mode        #505050 #202020 #ebdbb2
+    }
+}
+
+bar {
+    output HDMI1
+    position bottom
+    status_command i3blocks
+    font pango:Roboto 10
+    height 20
+
+    strip_workspace_numbers yes
+
+    colors {
+        statusline #ebdbb2
+        background #37474F
 
         focused_workspace   #505050 #202020 #ebdbb2
         inactive_workspace  #303030 #303030 #ebdbb2
