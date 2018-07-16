@@ -74,9 +74,14 @@ set fileencoding=utf-8  " The encoding written to file.
 "" Plugins
 ""
 
+"" RUST
 Plugin 'rust-lang/rust.vim'
-Plugin 'valloric/YouCompleteMe'
 Plugin 'racer-rust/vim-racer'
+
+
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
@@ -86,6 +91,8 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'enricobacis/vim-airline-clock'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'ayu-theme/ayu-vim'
+Plugin 'chrisbra/unicode.vim'
+""Plugin 'sheerun/vim-polyglot'
 
 
 ""
@@ -169,6 +176,9 @@ Plugin 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" YouCompleteMe Fix
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
