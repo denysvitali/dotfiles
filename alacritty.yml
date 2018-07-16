@@ -117,7 +117,7 @@ custom_cursor_colors: false
 colors:
   primary:
     background: '0x073557'
-    foreground: '0xEFEFEF'
+    foreground: '0xEAEAEA'
   cursor:
     text: '0x2E3440'
     cursor: '0xD8DEE9'
