@@ -33,8 +33,8 @@ focus_follows_mouse no
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty 
-#bindsym $mod+Return exec kitty
+#bindsym $mod+Return exec alacritty 
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -321,6 +321,7 @@ client.background       #000000
 
 
 bar {
+    #output eDP-1
     output eDP1
     position bottom
     status_command i3blocks
@@ -341,6 +342,7 @@ bar {
 }
 
 bar {
+    #output HDMI-1
     output HDMI1
     position bottom
     status_command i3blocks
