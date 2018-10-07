@@ -34,7 +34,8 @@ focus_follows_mouse no
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec alacritty 
-bindsym $mod+Return exec kitty
+#bindsym $mod+Return exec kitty
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -200,7 +201,8 @@ bindsym $mod+m mode "move"
 
 #bindsym $mod+l exec lock -f Roboto -- scrot -z
 
-set $lock /usr/bin/i3lock-denvit -pf Roboto-Regular -- scrot -z
+#set $lock /usr/bin/i3lock-denvit -pf Roboto-Regular -- scrot -z
+set $lock /usr/bin/i3lock-fancy -pf Roboto-Regular
 
 bindsym $mod+Control+l exec $lock
 bindsym $mod+l exec $lock
@@ -362,5 +364,25 @@ bar {
     }
 }
 
+bar {
+    #output HDMI-1
+    output DP2
+    position bottom
+    status_command i3blocks
+    font pango:Roboto 10
+    height 20
+
+    strip_workspace_numbers yes
+
+    colors {
+        statusline #ebdbb2
+        background #37474F
+
+        focused_workspace   #505050 #202020 #ebdbb2
+        inactive_workspace  #303030 #303030 #ebdbb2
+
+        binding_mode        #505050 #202020 #ebdbb2
+    }
+}
 # Wallpaper
 #output "*" background ~/Pictures/Wallpapers/mark-koch-526791-unsplash.jpg fill
