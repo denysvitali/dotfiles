@@ -81,7 +81,7 @@ Plugin 'racer-rust/vim-racer'
 
 Plugin 'airblade/vim-gitgutter'
 
-Plugin 'valloric/YouCompleteMe'
+""Plugin 'valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
@@ -92,6 +92,7 @@ Plugin 'enricobacis/vim-airline-clock'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'chrisbra/unicode.vim'
+Plugin 'davidhalter/jedi-vim'
 ""Plugin 'sheerun/vim-polyglot'
 
 
