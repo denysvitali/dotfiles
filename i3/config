@@ -367,6 +367,26 @@ client.background       #000000
 
 
 bar {
+    output HDMI-0
+    position bottom
+    status_command i3blocks
+    font pango:Roboto 10
+    height 20
+
+    strip_workspace_numbers yes
+
+    colors {
+        statusline #ebdbb2
+        background #37474F
+
+        focused_workspace   #505050 #202020 #ebdbb2
+        inactive_workspace  #303030 #303030 #ebdbb2
+
+        binding_mode        #505050 #202020 #ebdbb2
+    }
+}
+
+bar {
     #output eDP-1
     output eDP1
     position bottom
@@ -388,7 +408,6 @@ bar {
 }
 
 bar {
-    #output HDMI-1
     output HDMI1
     position bottom
     status_command i3blocks
