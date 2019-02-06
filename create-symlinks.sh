@@ -5,6 +5,7 @@ ln -s $DIR/zshrc ~/.zshrc
 ln -s $DIR/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -s $DIR/alacritty.yaml ~/.config/alacritty/alacritty.yml
 ln -s $DIR/i3blocks.conf ~/.i3blocks.conf
+ln -s $DIR/i3/config ~/.config/i3/config
 ln -s $DIR/fonts.conf ~/.config/fontconfig/
 ln -s $DIR/dunstrc ~/.config/dunst/dunstrc
 ln -s $DIR/.gtkrc-2.0 ~/.gtkrc-2.0
