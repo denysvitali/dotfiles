@@ -328,8 +328,8 @@ for_window [class="Florence" instance="florence" title="florence"] floating enab
 #--$template: i3.template
 #--$name: i3.conf
 
-gaps inner 5
-gaps outer 3
+gaps inner 20
+gaps outer 14
 
 
 client.focused          #325463     #325463     #FFFFFF     #1084ba     #02aaf2
