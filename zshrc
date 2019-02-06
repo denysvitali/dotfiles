@@ -49,7 +49,7 @@ ZSH_THEME="risto"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux zsh-syntax-highlighting zsh-completions)
+plugins=(git archlinux zsh-syntax-highlighting zsh-completions k)
 
 source $ZSH/oh-my-zsh.sh
 #export GOPATH=/home/$USERNAME/.go/:/home/$USERNAME/Documents/go/:/home/$USERNAME/go/
@@ -70,7 +70,8 @@ alias gpa='for i in $(git remote); do echo "Pushing to $i"; git push $i $(git re
 alias reboot='echo "Reboot prevented. Use rreboot to really reboot."'
 alias rreboot='/usr/bin/reboot'
 alias xclip='xclip -selection c'
-alias btw='screenfetch'
+alias btw='neofetch'
+alias gshow="PAGER='vim -' git -c color.ui=false show"
 
 source ~/.dotfiles/.private-aliases
 
@@ -89,6 +90,10 @@ function gagh(){
   git remote add origin git@github.com:$1.git
 }
 
+function docker-ip(){
+  docker inspect $1 | jq -r '.[0].NetworkSettings.IPAddress'
+}
+
 archfeed() {
   echo -e "$(echo $(curl --silent https://www.archlinux.org/feeds/news//// | sed -e ':a;N;$!ba;s/\n/ /g') | \
   sed -e 's/&gt;/ç/g' |
@@ -104,6 +109,10 @@ archfeed() {
   sed -e 's/<[^>]*>/ /g' |
   sed -e 's/&lt;[^ç]*ç//g' |
   sed -e 's/[ç£§]//g')\n\n" | less -R
+}
+
+function new-java-prj(){
+  mvn archetype:generate -DgroupId=$1 -DarchetypeArtifactId=maven-archetype-quickstart -DartifactId=$2 -DinteractiveMode=false
 }
 
 PATH="/home/dvitali/.local/bin:/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}:${GOPATH}/bin"; export PATH;
