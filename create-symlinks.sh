@@ -9,5 +9,6 @@ ln -s $DIR/fonts.conf ~/.config/fontconfig/
 ln -s $DIR/dunstrc ~/.config/dunst/dunstrc
 ln -s $DIR/.gtkrc-2.0 ~/.gtkrc-2.0
 ln -s $DIR/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
+ln -s $DIR/sway/config ~/.config/sway/config
 
 
