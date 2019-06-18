@@ -72,6 +72,7 @@ alias rreboot='/usr/bin/reboot'
 alias xclip='xclip -selection c'
 alias btw='neofetch'
 alias gshow="PAGER='vim -' git -c color.ui=false show"
+alias ls='lsd'
 
 source ~/.dotfiles/.private-aliases
 
@@ -115,7 +116,7 @@ function new-java-prj(){
   mvn archetype:generate -DgroupId=$1 -DarchetypeArtifactId=maven-archetype-quickstart -DartifactId=$2 -DinteractiveMode=false
 }
 
-PATH="/home/dvitali/.local/bin:/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.5.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/.gem/ruby/2.4.0/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}:${GOPATH}/bin"; export PATH;
+PATH="/home/dvitali/.local/bin:/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.6.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}:${GOPATH}/bin"; export PATH;
 PERL5LIB="/home/$USERNAME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/$USERNAME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/$USERNAME/perl5\""; export PERL_MB_OPT;
@@ -135,6 +136,9 @@ RPROMPT='$(check_last_exit_code)'
 
 export ANDROID_HOME=/home/$USERNAME/Android/Sdk
 export RUST_SRC_PATH=/home/$USERNAME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+
+alias vim="nvim"
+alias vimdiff="nvim -d"
 
 # added by travis gem
 [ -f /home/$USERNAME/.travis/travis.sh ] && source /home/$USERNAME/.travis/travis.sh
