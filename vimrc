@@ -25,7 +25,7 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 ""
 "" Customisations
@@ -75,25 +75,27 @@ set fileencoding=utf-8  " The encoding written to file.
 ""
 
 "" RUST
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
-""Plugin 'valloric/YouCompleteMe'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'enricobacis/vim-airline-clock'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'chrisbra/unicode.vim'
-Plugin 'davidhalter/jedi-vim'
-""Plugin 'sheerun/vim-polyglot'
+Plug 'valloric/YouCompleteMe'
+Plug 'neomake/neomake'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'enricobacis/vim-airline-clock'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'ayu-theme/ayu-vim'
+Plug 'chrisbra/unicode.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'rhysd/vim-crystal'
+""Plug 'sheerun/vim-polyglot'
 
 
 ""
@@ -168,10 +170,10 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 ""  UltiSnips
 ""
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-space>"
