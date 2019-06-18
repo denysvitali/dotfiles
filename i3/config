@@ -204,7 +204,9 @@ bindsym $mod+m mode "move"
 #set $lock /usr/bin/i3lock-denvit -pf Roboto-Regular -- scrot -z
 #set $lock /usr/bin/i3lock-fancy -pf Roboto-Regular
 
-set $lock /home/dvitali/.local/bin/betterlockscreen -l dim -t "Denys Vitali"
+#set $lock /home/dvitali/.local/bin/betterlockscreen -l dim -t "Denys Vitali"
+
+set $lock lock-ws
 
 bindsym $mod+Control+l exec $lock
 bindsym $mod+l exec $lock
@@ -283,16 +285,17 @@ exec --no-startup-id vmware-user&
 #exec --no-startup-id krunner&
 exec --no-startup-id ~/.scripts/disp-home.sh
 exec --no-startup-id nitrogen --restore &
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id ~/.config/polybar/launch.sh
 
 #exec --no-startup-id conky
 exec --no-startup-id dunst
-# exec --no-startup-id /usr/bin/blueman-applet                 # Bluetooth Manager
+exec --no-startup-id /usr/bin/blueman-applet                 # Bluetooth Manager
 
 #--[ GAPS and BORDERS ]--#
 
 #smart_borders enable
-new_window none
+#new_window none
 for_window [class="^.*"] border pixel 1
 
 for_window [class="albert" instance="albert"] border none
@@ -328,8 +331,8 @@ for_window [class="Florence" instance="florence" title="florence"] floating enab
 #--$template: i3.template
 #--$name: i3.conf
 
-gaps inner 20
-gaps outer 14
+gaps inner 5
+gaps outer 5
 
 
 client.focused          #325463     #325463     #FFFFFF     #1084ba     #02aaf2
@@ -376,8 +379,8 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        statusline #ebdbb2
-        background #37474F
+        statusline #9E9E9E
+        background #263238
 
         focused_workspace   #505050 #202020 #ebdbb2
         inactive_workspace  #303030 #303030 #ebdbb2
@@ -397,8 +400,8 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        statusline #ebdbb2
-        background #37474F
+        statusline #9E9E9E
+        background #263238
 
         focused_workspace   #505050 #202020 #ebdbb2
         inactive_workspace  #303030 #303030 #ebdbb2
@@ -408,6 +411,27 @@ bar {
 }
 
 bar {
+    output XWAYLAND0
+    position bottom
+    status_command i3blocks
+    font pango:Roboto 10
+    height 20
+
+    strip_workspace_numbers yes
+
+    colors {
+        statusline #9E9E9E
+        background #263238
+
+        focused_workspace   #505050 #202020 #ebdbb2
+        inactive_workspace  #303030 #303030 #ebdbb2
+
+        binding_mode        #505050 #202020 #ebdbb2
+    }
+}
+
+bar {
+    output XWAYLAND0
     output HDMI1
     position bottom
     status_command i3blocks
@@ -417,8 +441,8 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        statusline #ebdbb2
-        background #37474F
+        statusline #9E9E9E
+        background #263238
 
         focused_workspace   #505050 #202020 #ebdbb2
         inactive_workspace  #303030 #303030 #ebdbb2
@@ -430,6 +454,7 @@ bar {
 bar {
     #output HDMI-1
     output DP2
+	output XWAYLAND1
     position bottom
     status_command i3blocks
     font pango:Roboto 10
@@ -438,8 +463,8 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        statusline #ebdbb2
-        background #37474F
+        statusline #9E9E9E
+        background #263238
 
         focused_workspace   #505050 #202020 #ebdbb2
         inactive_workspace  #303030 #303030 #ebdbb2
