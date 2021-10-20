@@ -33,6 +33,26 @@ widgets:
             "separator_block_width": 21
         }]
 
+  - widget: exec
+    command: /home/dvitali/.config/yagostatus/blocks/cpu-temp.sh
+    interval: 10
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: exec
+    command: /home/dvitali/.config/yagostatus/blocks/fan-speed.sh
+    interval: 3
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
   - widget: weather
     api_key: 745f7716ffd4c29972bbaf9d9fb8cd6b
     units: metric
