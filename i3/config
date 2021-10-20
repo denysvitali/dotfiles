@@ -221,8 +221,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ~/scripts/volume-down.sh  #dec
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 3 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 3 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec light -A 3 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec light -U 3 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 3
+bindsym XF86MonBrightnessDown exec xbacklight -dec 3
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -279,12 +281,15 @@ mode "$mode_gaps_outer" {
 
 #--[ EXEC ]--#
 
-exec --no-startup-id setxkbmap de_CH
-exec --no-startup-id compton&
-exec --no-startup-id vmware-user&
+# exec --no-startup-id setxkbmap de_CH
+exec --no-startup-id setxkbmap us -variant altgr-intl
+exec --no-startup-id picom&
+#exec --no-startup-id vmware-user&
 #exec --no-startup-id krunner&
-exec --no-startup-id ~/.scripts/disp-home.sh
+#exec --no-startup-id ~/.scripts/disp-home.sh
 exec --no-startup-id nitrogen --restore &
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY
+exec --no-startup-id /usr/lib/polkit-1/polkitd --no-debug
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id ~/.config/polybar/launch.sh
 
@@ -297,36 +302,6 @@ exec --no-startup-id /usr/bin/blueman-applet                 # Bluetooth Manager
 #smart_borders enable
 #new_window none
 for_window [class="^.*"] border pixel 1
-
-for_window [class="albert" instance="albert"] border none
-# Disable floating for hangouts
-for_window [class="Google-chrome" \
-            instance="crx_knipolnnllmklapflnccelgolnpehhpl" \
-            window_role="app"] floating disable
-
-for_window [title="^floatme$"] floating enable
-for_window [title="^floatme: "] floating enable
-for_window [title="^Tuna$"] floating enable
-for_window [title="^BThread"] floating enable
-
-assign [class="Albert" instance="albert"] albert
-assign [class="Google-chrome" \
-        instance="crx_knipolnnllmklapflnccelgolnpehhpl" \
-        window_role="app"] hangouts
-
-assign [class="discord" instance="discord"] discord
-
-assign [class="Riot" instance="riot" ] riot
-assign [class="Rocket.Chat+" instance="rocket.chat+"] rocketchat
-assign [class="Messenger for Desktop" instance="messenger for desktop"] messenger
-
-
-# Make TeamViewer windows popup by default
-for_window [class="Steam" instance="Steam"] floating enable
-
-for_window [class="Blueman-manager"] floating enable
-
-for_window [class="Florence" instance="florence" title="florence"] floating enable
 
 #--$template: i3.template
 #--$name: i3.conf
@@ -473,4 +448,4 @@ bar {
     }
 }
 # Wallpaper
-#output "*" background ~/Pictures/Wallpapers/mark-koch-526791-unsplash.jpg fill
+# output "*" background ~/Pictures/Wallpapers/single/2.jpg fill

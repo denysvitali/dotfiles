@@ -31,28 +31,19 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
-# start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec WINIT_HIDPI_FACTOR=1.0 alacritty 
-#bindsym $mod+Return exec kitty
-#bindsym $mod+Return exec konsole
-
-# kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec rofi -show combi
-#bindsym $mod+d exec albert show
-# I'm using Krunner now
-bindsym $mod+q exec rofi -show window
-bindsym $mod+i exec rofi -show ssh
+
 bindsym $mod+e exec nautilus
-bindsym $mod+Shift+d exec rofi -show combi
+bindsym $mod+d exec sirula
 
 # Change Display Config
 bindsym $mod+p exec arandr
 
 # Print screen
-bindsym Print exec grim -c /tmp/screen.png
+bindsym --release Print exec grim -g \"$(slurp)" - | wl-copy
+# bindsym --release Print exec grim -g \"$(slurp)"
 
 # change focus
 bindsym $mod+h focus left
@@ -207,14 +198,12 @@ bindsym $mod+l exec $lock
 bindsym --release $mod+Print exec "scrot -e 'mv $f /tmp/ && gimp /tmp/$f'"
 # scrot & gimp - select window or rectangle
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/scripts/volume-up.sh #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/scripts/volume-down.sh  #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec volumectl raise
+bindsym XF86AudioLowerVolume exec volumectl lower
+bindsym XF86AudioMute exec volumectl mute
 
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 3 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 3 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec lightctl raise
+bindsym XF86MonBrightnessDown exec lightctl lower
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -274,12 +263,15 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id setxkbmap de_CH
 exec --no-startup-id compton&
 exec --no-startup-id vmware-user&
+exec "avizo-service"
 #exec --no-startup-id krunner&
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id avizo-service
 
-exec --no-startup-id dunst
-exec --no-startup-id /usr/bin/blueman-applet                 # Bluetooth Manager
+exec --no-startup-id mako
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec --no-startup-id /usr/bin/pactl load-module module-bluetooth-discover
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY
 
 #exec --no-startup-id settimed mojave-timed
 
@@ -288,9 +280,21 @@ exec --no-startup-id /usr/bin/blueman-applet                 # Bluetooth Manager
 smart_borders enable
 default_border none
 for_window [class="^.*"] border pixel 1
+for_window [title="TelegramDesktop"] floating enable
 
-gaps inner 5
-gaps outer 5
+for_window [title="avizo"] border pixel 0
+for_window [title="avizo"] sticky toggle
+no_focus [title="avizo"]
+
+#for_window [class="jetbrains-(.*)" title="Go to Line/Column"] floating enable
+#for_window [class="jetbrains-(.*)" title="Rename"] floating enable
+#for_window [class="jetbrains-(.*)" title="Open Project"] floating enable
+#for_window [class="jetbrains-(.*)" title="win0"] floating enable
+#for_window [class="jetbrains-(.*)" title="win2"] floating enable
+
+
+gaps inner 10
+gaps outer 10
 
 
 client.focused          #325463     #325463     #FFFFFF     #1084ba     #02aaf2
@@ -306,9 +310,11 @@ client.background       #000000
 #output eDP-1 pos 0 1080 res 1920x1080
 
 
-output DP-2 mode 1920x1080 pos 0 0
-output eDP-1 mode 1920x1080@60.001999Hz pos 1920 0
-output HDMI-A-1 mode 1920x1080 pos 3840 0
+output DP-2 mode 1920x1080 pos 0 1080
+output eDP-1 mode 1920x1080@60.001999Hz pos 1920 1080
+output HDMI-A-1 mode 1920x1080 pos 3840 1080
+
+output 'Samsung Electric Company S27D590 0x00003734' pos 1920 0
 
 #output DP-2 bg #FF0000 solid_color
 #output eDP-1 bg #00FF00 solid_color
@@ -316,28 +322,33 @@ output HDMI-A-1 mode 1920x1080 pos 3840 0
 
 bar {
 	output DP-2
-    output eDP-1
+	output DP-1
+  output eDP-1
 	output HDMI-A-1
-    position bottom
-    status_command i3blocks
-    font pango:Roboto 10
-    height 20
+  position bottom
+  status_command /home/$USER/go/bin/yagostatus -sway -config /home/$USER/.config/yagostatus/yagostatus.yml
+  font pango:Roboto 10
+  height 20
 
-    strip_workspace_numbers yes
+  strip_workspace_numbers yes
 
-    colors {
-        statusline #9E9E9E88
-        background #26323888
+  colors {
+      statusline #9E9E9E88
+      background #26323888
 
-        focused_workspace   #50505088 #20202088 #ebdbb288
-        inactive_workspace  #30303088 #30303088 #ebdbb288
+      focused_workspace   #50505088 #20202088 #ebdbb288
+      inactive_workspace  #30303088 #30303088 #ebdbb288
 
-        binding_mode        #50505088 #20202088 #ebdbb288
-    }
+      binding_mode        #50505088 #20202088 #ebdbb288
+  }
 }
 
 input '1739:29702:SYN1B7F:00_06CB:7406_Touchpad' {
 		tap enabled
+    natural_scroll true
 }
 
-output "*" bg /home/dvitali/Pictures/Wallpapers/single/1.jpg fill
+input * xkb_layout "us"
+input * xkb_variant "altgr-intl"
+
+output "*" bg /home/dvitali/Pictures/Wallpapers/neon-1.jpg fill

@@ -6,7 +6,7 @@ export ZSH=/home/$USERNAME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="risto"
+ZSH_THEME="clean"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -49,7 +49,7 @@ ZSH_THEME="risto"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux zsh-syntax-highlighting zsh-completions k)
+plugins=(git archlinux zsh-syntax-highlighting zsh-completions kubectl)
 
 source $ZSH/oh-my-zsh.sh
 #export GOPATH=/home/$USERNAME/.go/:/home/$USERNAME/Documents/go/:/home/$USERNAME/go/
@@ -72,7 +72,8 @@ alias rreboot='/usr/bin/reboot'
 alias xclip='xclip -selection c'
 alias btw='neofetch'
 alias gshow="PAGER='vim -' git -c color.ui=false show"
-alias ls='lsd'
+alias tv7='mpv --no-resume-playback --playlist="https://tv7api2.tv.init7.net/api/playlist/default.m3u?rp=true"'
+alias 'git cc'='git-cc'
 
 source ~/.dotfiles/.private-aliases
 
@@ -116,11 +117,11 @@ function new-java-prj(){
   mvn archetype:generate -DgroupId=$1 -DarchetypeArtifactId=maven-archetype-quickstart -DartifactId=$2 -DinteractiveMode=false
 }
 
-PATH="/home/dvitali/.local/bin:/home/dvitali/anaconda3/bin:/home/$USERNAME/.gem/ruby/2.6.0/bin:/home/$USERNAME/.yarn/bin:/home/$USERNAME/.opam/default/bin/:/home/$USERNAME/.cargo/bin:/home/$USERNAME/.go/bin:/home/$USERNAME/perl5/bin${PATH:+:${PATH}}:${GOPATH}/bin"; export PATH;
-PERL5LIB="/home/$USERNAME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/$USERNAME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/$USERNAME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/$USERNAME/perl5"; export PERL_MM_OPT;
+function pips() {
+    echo $'\n'$1 >> requirements.txt; pip install $1
+}
+
+PATH="$PATH:/home/dvitali/bin/:/home/dvitali/.local/bin:/home/$USERNAME/.cargo/bin:/home/$USERNAME/go/bin:/home/$USERNAME/.yarn/bin/"; export PATH;
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
@@ -134,11 +135,25 @@ function check_last_exit_code() {
 }
 RPROMPT='$(check_last_exit_code)'
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+
 export ANDROID_HOME=/home/$USERNAME/Android/Sdk
+export ANDROID_SDK_ROOT=/home/$USERNAME/Android/Sdk
 export RUST_SRC_PATH=/home/$USERNAME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+export GO111MODULE=on
 
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias kubectl="kubecolor"
 
 # added by travis gem
 [ -f /home/$USERNAME/.travis/travis.sh ] && source /home/$USERNAME/.travis/travis.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
+
+PROMPT='%{$fg[yellow]%}$(kube-ps1) '$PROMPT
+
+source /usr/share/nvm/init-nvm.sh
