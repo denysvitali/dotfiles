@@ -1,0 +1,86 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Path to your oh-my-zsh installation.
+export ZSH=/home/$USERNAME/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="clean"
+plugins=(
+  git 
+  archlinux 
+  zsh-syntax-highlighting 
+  zsh-completions 
+)
+
+source $ZSH/oh-my-zsh.sh
+export GOPATH=/home/$USERNAME/go
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+alias dockerX11run='docker run  -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/snd:/dev/snd -e DISPLAY=unix$DISPLAY'
+alias gpom='git push origin master'
+alias gpo='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gcom='git commit -m'
+alias gadd='git add'
+alias ipgrp='grep -Po --color=none "inet \K[\d.]+"'
+alias gcs='git add . && git commit-suicide && gpo'
+alias gpa='for i in $(git remote); do echo "Pushing to $i"; git push $i $(git rev-parse --abbrev-ref HEAD); done'
+alias reboot='echo "Reboot prevented. Use rreboot to really reboot."'
+alias rreboot='/usr/bin/reboot'
+alias btw='neofetch'
+alias gshow="PAGER='vim -' git -c color.ui=false show"
+alias 'git cc'='git-cc'
+
+# Enable completions
+autoload -U compinit && compinit
+
+function disk-usage(){
+  du -skh $1/* | sort -h
+}
+
+function gagh(){
+  git remote add origin git@github.com:$1.git
+}
+
+function docker-ip(){
+  docker inspect $1 | jq -r '.[0].NetworkSettings.IPAddress'
+}
+
+PATH="$PATH:/home/$USERNAME/bin/:/home/$USERNAME/.local/bin:/home/$USERNAME/.cargo/bin:/home/$USERNAME/go/bin:/home/$USERNAME/.yarn/bin/"; 
+export PATH
+
+function check_last_exit_code() {
+  local LAST_EXIT_CODE=$?
+  if [[ $LAST_EXIT_CODE -ne 0 ]]; then
+    local EXIT_CODE_PROMPT=' '
+    EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+    EXIT_CODE_PROMPT+="%{$fg_bold[red]%}$LAST_EXIT_CODE%{$reset_color%}"
+    EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+    echo "$EXIT_CODE_PROMPT"
+  fi
+}
+RPROMPT='$(check_last_exit_code)'
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  source /etc/profile.d/vte.sh
+fi
+
+export ANDROID_HOME=/home/$USERNAME/Android/Sdk
+export ANDROID_SDK_ROOT=/home/$USERNAME/Android/Sdk
+export RUST_SRC_PATH=/home/$USERNAME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+export GO111MODULE=on
+
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias kubectl="kubecolor"
+
+# added by travis gem
+[ -f /home/$USERNAME/.travis/travis.sh ] && source /home/$USERNAME/.travis/travis.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
+
+PROMPT='%{$fg[yellow]%}$(kube-ps1) '$PROMPT
+
+source /usr/share/nvm/init-nvm.sh

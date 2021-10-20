@@ -1,0 +1,24 @@
+---
+- name: Add Symlinks
+  hosts: localhost
+  tasks:
+    - name: Create Symlinks
+      ansible.builtin.file:
+        src: ~/.dotfiles/dot-config/{{ item }}
+        path: ~/.config/{{ item }}
+        state: link
+      with_items:
+        - alacritty
+        - dunst
+        - i3
+        - kitty
+        - sway
+        - yagostatus
+
+    - name: Create ~ symlinks
+      ansible.builtin.file:
+        src: ~/.dotfiles/homedir/{{ item }}
+        path: ~/.{{ item }}
+        state: link
+      with_items:
+        - zshrc

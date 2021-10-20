@@ -1,0 +1,76 @@
+widgets:
+
+  - widget: wifi
+    interface: wlp7s0
+    format: "📶 %s"
+    interval: 5
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: disk
+    fs: /
+    interval: 10
+    format: "D: %v"
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: brightness
+    format: "💡 %.2f%%"
+    device: intel_backlight
+    interval: 1
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: weather
+    api_key: 745f7716ffd4c29972bbaf9d9fb8cd6b
+    units: metric
+    location: Zurich, Switzerland
+    interval: 10
+    format: "%we %wm, %mt °C"
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: cpu
+    interval: 5
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: battery
+    index: 0
+    interval: 5
+    format: "%e %p %"
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
+
+  - widget: clock
+    format: 2006-01-02 Mon 15:04:05 # https://golang.org/pkg/time/#Time.Format
+    templates: >
+        [{
+            "color": "#ffffff",
+            "separator": true,
+            "separator_block_width": 21
+        }]
